@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/MohitGoel109/EMS#readme",
   "dependencies": {
+    "cors": "^2.8.6",
     "express": "^5.2.1",
     "nodemon": "^3.1.14"
   }

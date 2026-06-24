@@ -1,21 +1,15 @@
 const employees = require("../data/employee");
 
-
 // GET ALL EMPLOYEES
-
 const getAllEmployees = (req, res) => {
-
   res.status(200).json(employees);
 
 };
 
 
 // GET SINGLE EMPLOYEE
-
 const getEmployeeById = (req, res) => {
-
   const id = Number(req.params.id);
-
   const employee = employees.find(
     emp => emp.id === id
   );
@@ -34,9 +28,7 @@ const getEmployeeById = (req, res) => {
 // ADD EMPLOYEE
 
 const addEmployee = (req, res) => {
-
   const { name, department, salary } = req.body;
-
   const newEmployee = {
     id: employees.length + 1,
     name,
@@ -57,9 +49,7 @@ const addEmployee = (req, res) => {
 // UPDATE EMPLOYEE
 
 const updateEmployee = (req, res) => {
-
   const id = Number(req.params.id);
-
   const employee = employees.find(
     emp => emp.id === id
   );
@@ -90,9 +80,7 @@ const updateEmployee = (req, res) => {
 // DELETE EMPLOYEE
 
 const deleteEmployee = (req, res) => {
-
   const id = Number(req.params.id);
-
   const index = employees.findIndex(
     emp => emp.id === id
   );
