@@ -43,7 +43,7 @@ function App() {
     salary: "",
   });
 
-  const API_URL = "http://localhost:5000/employees";
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/employees";
 
   // FETCH EMPLOYEES
   const getEmployees = async () => {
