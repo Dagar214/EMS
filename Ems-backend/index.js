@@ -8,7 +8,12 @@ const loggerMiddleware = require("./middleware/loggerMiddleware");
 
 app.use(express.json());
 app.use(loggerMiddleware);
-app.use(cors())
+app.use(cors({
+  origin:[
+    "http://localhost:5173",
+    "https://ems-rust-sigma.vercel.app"
+  ]
+}))
 
 // Routes
 app.use("/employees", employeeRoutes);
