@@ -13,7 +13,7 @@ app.use(cors({
     "http://localhost:5173",
     "https://ems-rust-sigma.vercel.app"
   ]
-}))
+}));
 
 // Routes
 app.use("/employees", employeeRoutes);
