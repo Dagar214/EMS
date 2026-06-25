@@ -70,7 +70,7 @@ EMS/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/MohitGoel109/EMS.git
+git clone https://github.com/Dagar214/EMS.git
 cd EMS
 ```
 
@@ -149,3 +149,6 @@ This project is licensed under the ISC License.
 ## 👤 Author
 
 **Dev**
+GitHub: [@Dagar214](https://github.com/Dagar214)
+
+
