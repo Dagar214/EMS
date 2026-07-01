@@ -108,22 +108,25 @@
 //   deleteEmployee
 // };
 
-const Employee = require("../model/employeeSchema");
+const Employee=require("../model/employeeSchema");
+
 
 // GET ALL EMPLOYEES
-const getAllEmployees = async (req, res) => {
-  const employees = await Employee.find();
+
+const getAllEmployees =async (req, res) => {
+  const employees= await Employee.find();
   res.status(200).json(employees);
 
 };
 
 
 // GET SINGLE EMPLOYEE
-const getEmployeeById = (req, res) => {
-  const id = Number(req.params.id);
-  const employee = employees.find(
-    emp => emp.id === id
-  );
+
+const getEmployeeById =async (req, res) => {
+
+  const id = req.params.id;
+
+  const employee = await Employee.findById(id);
 
   if (!employee) {
     return res.status(404).json({
@@ -138,12 +141,18 @@ const getEmployeeById = (req, res) => {
 
 // ADD EMPLOYEE
 
-const addEmployee = async (req, res) => {
-  const { name, department, salary } = req.body;
-  const newEmployee = await Employee.create({ name, department, salary });
-  await newEmployee.save();
- 
 
+const addEmployee =async (req, res) => {
+
+  const { name, department, salary } = req.body;
+
+  const newEmployee = await new Employee({
+    name,
+    department,
+    salary
+  })
+
+  await newEmployee.save()
 
   res.status(201).json({
     message: "Employee Added Successfully",
@@ -155,11 +164,12 @@ const addEmployee = async (req, res) => {
 
 // UPDATE EMPLOYEE
 
-const updateEmployee = (req, res) => {
-  const id = Number(req.params.id);
-  const employee = employees.find(
-    emp => emp.id === id
-  );
+const updateEmployee = async (req, res) => {
+
+  const id = req.params.id;
+
+  const employee = await Employee.findById(id);
+
 
   if (!employee) {
     return res.status(404).json({
@@ -176,6 +186,8 @@ const updateEmployee = (req, res) => {
   employee.salary =
     req.body.salary || employee.salary;
 
+  await employee.save();
+
   res.status(200).json({
     message: "Employee Updated Successfully",
     employee
@@ -186,11 +198,11 @@ const updateEmployee = (req, res) => {
 
 // DELETE EMPLOYEE
 
-const deleteEmployee = (req, res) => {
-  const id = Number(req.params.id);
-  const index = employees.findIndex(
-    emp => emp.id === id
-  );
+const deleteEmployee = async(req, res) => {
+
+  const id = req.params.id;
+
+  const index = await Employee.findById(id);
 
   if (index === -1) {
     return res.status(404).json({
@@ -198,8 +210,7 @@ const deleteEmployee = (req, res) => {
     });
   }
 
-  employees.splice(index, 1);
-
+  await Employee.findByIdAndDelete(id);
   res.status(200).json({
     message: "Employee Deleted Successfully"
   });

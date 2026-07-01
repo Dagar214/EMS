@@ -43,7 +43,7 @@ function App() {
     salary: "",
   });
 
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/employees";
+  const API_URL = "http://localhost:5000/employees" || import.meta.env.VITE_API_URL;
 
   // FETCH EMPLOYEES
   const getEmployees = async () => {
@@ -348,7 +348,7 @@ function App() {
                       <Pencil size={14} />
                       Edit
                     </button>
-                    <button className="delete-btn" onClick={() => deleteEmployee(employee.id)}>
+                    <button className="delete-btn" onClick={() => deleteEmployee(employee._id)}>
                       <Trash2 size={14} />
                       Delete
                     </button>
